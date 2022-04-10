@@ -48,19 +48,16 @@ namespace lab9.ViewModels
             var folder = SelectedNode.Parent;
             if (folder != null)
             {
-                if (folder.ImageCounter > 1)
+                foreach(Node content in folder.Content)
                 {
-                    foreach(Node content in folder.Content)
+                    if (content.Fullpath == ImagePath)
                     {
-                        if (content.Fullpath == ImagePath)
-                        {
-                            int index = folder.Content.IndexOf(content);
-                            index += offset;
-                            if (index < folder.Content.Count - folder.ImageCounter) index = folder.Content.Count - 1;
-                            else if (index >= folder.Content.Count) index = folder.Content.Count - folder.ImageCounter;
-                            SelectedNode = folder.Content[index];
-                            break;
-                        }
+                        int index = folder.Content.IndexOf(content);
+                        index += offset;
+                        if (index < folder.Content.Count - folder.ImageCounter) index = folder.Content.Count - 1;
+                        else if (index >= folder.Content.Count) index = folder.Content.Count - folder.ImageCounter;
+                        SelectedNode = folder.Content[index];
+                        break;
                     }
                 }
             }
